@@ -1,3 +1,8 @@
+
+// composent: reçcoit les props d'une plante , on a acceder a ces props qui sont definit dans shoppingList
+//affichage de nom et image de la plante
+// utiliser careScale pour recuperer scaleValue a partie de datas lighdi nst3mloha f carescale
+
 import CareScale from "./carescale";
 import '../styles/plantitem.css'
 
