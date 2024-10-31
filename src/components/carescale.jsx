@@ -16,6 +16,15 @@ function CareScale({scaleValue, careType}){
     ) : (
         <img src={Water} alt='water-icone'/>
     )
+
+
+    // quantityLabel
+
+    const quantityLabel = {
+        1: 'peu',
+        2: 'modérement',
+        3: 'beaccoup'
+    }
     
     // on va mappe sur range en verifiant a chq fois si scaleValue et superier a elemt de range excute contenuer span où on va afficher l'icone type
     // kifach aysra hde chi:
@@ -25,7 +34,20 @@ function CareScale({scaleValue, careType}){
     // ila mchina pour careType= light ligne 11 ds compnt plantitem  , on  est face d'executer sun 
     // nous on a light = 2 (selon datas) dc apres les comparaisons ghadi nsd9o affichina 2 icone de sun. 
     return(
-            <div>
+             <div
+
+                  onClick={() =>
+                           alert(
+                              `Cette plante requiert ${quantityLabel[scaleValue]} ${
+                                careType === 'light' ? 'de lumière' : "d'arrosage"  
+                               }`                            
+                           )
+                 
+                 
+                 
+                 }
+                 >
+
                 {range.map((rangeElm) => 
                  scaleValue >= rangeElm ? (
                     <span key={rangeElm.toString()}>{scaleType}</span>

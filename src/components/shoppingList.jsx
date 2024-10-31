@@ -3,7 +3,7 @@ import '../styles/shoppingList.css'
 import PlantItem from "./plantitem"
 
 
-function ShoppingList(){
+function ShoppingList({cart, updateCart}){
      
     // on va cree un tab unique
     // extraire les catego unique
@@ -14,27 +14,45 @@ function ShoppingList(){
         []
     )
 
-    return(
+    const addToCart = (name, price) => {
+        const currentPlantSaved = cart.find((plant)=> plant.name === name)
+        if(currentPlantSaved){
+            const cartFiltereCurrentPlant = cart.filter(
+                (plant) => plant.name !== name
+            )
+            updateCart([
+                ...cartFiltereCurrentPlant,
+                {name,price, amount: currentPlantSaved.amount +1}
+            ])
+        }else{
+            updateCart([...cart, {name,price,amount:1}])
+        }
+    }
 
-        <div>
+    return (
+
+        <div className="lmj-shopping-list">
             <ul>
                 {categories.map((cat) =>(
                     <li key={cat}>{cat}</li>
                 ))}
             </ul>
             <ul className="lmj-plat-list">
-					{plantList.map(({ id, cover, name, water, light }) => (
-                        <PlantItem
-                            id={id}
+					{plantList.map(({ id, cover, name, water, light,price }) => (
+                    <div key={id}>
+                         <PlantItem
                             cover={cover}
                             name={name}
                             water={water}
                             light={light}
-                        />
+                            price={price}
+                         />
+                        <button onClick={()=> addToCart(name,price)}>Ajouter</button>
+                    </div>
                     ))}
             </ul>
-        </div>
 
+        </div>
 
     )
 }
