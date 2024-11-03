@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react'
 import '../styles/cart.css'
 function Cart({cart, updateCart}){
 
-    
+    //isOpen : Un état qui détermine si le panier est ouvert ou fermé. Initialisé à true, cela signifie que le panier est ouvert par défaut.
     const [isOpen, setIsOpen] = useState(true)
     const items = Object.keys(cart)
     const total = cart.reduce(
         (acc,plantType) => acc + plantType.amount * plantType.price,
+        // valeur initale
          0
 
     )

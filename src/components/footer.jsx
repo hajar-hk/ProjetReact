@@ -6,9 +6,13 @@ import '../styles/footer.css'
 
 function Footer(){
 
+    // inputValue : C'est une variable d'état qui stocke la valeur saisie par l'utilisateur dans le champ de texte.
     const [inputValue, setInputValue] = useState('')
 
+
+    //Cette fonction est appelée chaque fois que l'utilisateur modifie le contenu du champ de saisie.
     function handleInput(e){
+        // e.target.value:Cela récupère la valeur actuelle du champ de saisie et met à jour l'état inputValue avec cette valeur.
         setInputValue(e.target.value)
     }
 

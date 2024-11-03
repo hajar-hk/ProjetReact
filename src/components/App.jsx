@@ -8,11 +8,21 @@ import { useEffect, useState } from 'react'
 
 
 function App() {
+	//récupérer le panier d'achats stocké dans le localStorage du navigateur
 	const savedCart = localStorage.getItem('cart')
+
+	//Si un panier est trouvé, il est analysé (converti de JSON en objet JavaScript), sinon, un tableau vide est utilisé.
 	const [cart, updateCart] = useState(savedCart ? JSON.parse(savedCart) : [])
+
+
+	//chaque fois que l'état cart change. 
+	//Ici, il met à jour le localStorage avec le panier actuel, en le convertissant en chaîne JSON.
+	// Cela garantit que les données du panier restent persistantes même après le rechargement de la page.
 	useEffect(() =>{
 		localStorage.setItem('cart' , JSON.stringify(cart))
 	}, [cart])
+
+	
 	return (
 		<div>
 			<Banner>
@@ -35,4 +45,4 @@ export default App
 // Lorsque l'application est lancée, App rend Banner et ShoppingList.
 // ShoppingList extrait les catégories des plantes et les affiche, puis rend les items de plantes en utilisant PlantItem.
 // Chaque PlantItem affiche les détails de la plante, y compris ses besoins en soins via CareScale.
-// ffffffffffff
+
