@@ -1,9 +1,13 @@
+import { useState } from "react"
 import { plantList } from "../datas/plantList"
 import '../styles/shoppingList.css'
 import PlantItem from "./plantitem"
+import Categories from "./categories"
 
 
 function ShoppingList({cart, updateCart}){
+
+    const[activeCategory,setActiveCategory] = useState('')
      
     // on va cree un tab unique
     // extraire les catego unique
@@ -32,13 +36,14 @@ function ShoppingList({cart, updateCart}){
     return (
 
         <div className="lmj-shopping-list">
-            <ul>
-                {categories.map((cat) =>(
-                    <li key={cat}>{cat}</li>
-                ))}
-            </ul>
-            <ul className="lmj-plat-list">
-					{plantList.map(({ id, cover, name, water, light,price }) => (
+            <Categories
+                   categories={categories}
+                   setActiveCategory={setActiveCategory}
+                   activeCategory={activeCategory}
+                />
+            <ul className="lmj-plant-list">
+					{plantList.map(({ id, cover, name, water, light,price,category }) => 
+                       !activeCategory || activeCategory === category?(
                     <div key={id}>
                          <PlantItem
                             cover={cover}
@@ -49,7 +54,8 @@ function ShoppingList({cart, updateCart}){
                          />
                         <button onClick={()=> addToCart(name,price)}>Ajouter</button>
                     </div>
-                    ))}
+                    ):null
+                )}
             </ul>
 
         </div>

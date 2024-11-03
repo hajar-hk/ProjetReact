@@ -19,14 +19,14 @@ function Footer(){
     }
     return(
 
-         <footer className="lmg-footer">
+         <footer className="lmj-footer">
 
-            <div className="lmg-footer">
+            <div className="lmj-footer-elem">
                  
                  Pour les passionnées de la plantes 🌿🌱🌵
 
             </div>
-            <div className="lmg-footer-elem">Laissez-nous votre maiil:</div>
+            <div className="lmj-footer-elem">Laissez-nous votre maiil:</div>
             <input 
               
                  placeholder="Entrez votre mail"

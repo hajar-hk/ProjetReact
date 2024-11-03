@@ -4,11 +4,15 @@ import ShoppingList from './shoppingList'
 import logo from '../assets/logo.png'
 import Footer from './footer'
 import '../styles/layout.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 
 function App() {
-	const [cart, updateCart] = useState([])
+	const savedCart = localStorage.getItem('cart')
+	const [cart, updateCart] = useState(savedCart ? JSON.parse(savedCart) : [])
+	useEffect(() =>{
+		localStorage.setItem('cart' , JSON.stringify(cart))
+	}, [cart])
 	return (
 		<div>
 			<Banner>
@@ -31,3 +35,4 @@ export default App
 // Lorsque l'application est lancée, App rend Banner et ShoppingList.
 // ShoppingList extrait les catégories des plantes et les affiche, puis rend les items de plantes en utilisant PlantItem.
 // Chaque PlantItem affiche les détails de la plante, y compris ses besoins en soins via CareScale.
+// ffffffffffff
